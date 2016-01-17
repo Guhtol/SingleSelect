@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Exemplo</title>
+    <meta charset="utf-8" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Exemplo</h1>
+        <hr>
+        <div class="row">
+            <form action="">
+                <div class="form-group col-sm-4">
+                    <select id="selectId" class="form-control">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <select id="selectId2" class="form-control">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="row">
+        </div>
+    </div>
+
+
+    <script src="js/SingleSelect.js"></script>
+    <script>
+        var select = Select('selectId');
+        
+        var select2 = Select('selectId2');
+        
+       len =10000;
+       
+       i=0;
+       
+       var arrayOption=[];
+       
+       var option ={id:'1',name:'Everygrey'};   
+    
+       while(i <len)
+       {
+            arrayOption.push(option);
+            
+            i++;
+        };   
+       
+       
+       select.append(arrayOption,'name','id');
+       
+       select2.append(option,'name','id');
+       
+    </script>
+</body>
+
+</html>
