@@ -10,6 +10,10 @@ var Select = (function () {
 
     InnerSelect.prototype.append = append;
 
+    InnerSelect.prototype.selectItem = selectItem;
+
+    InnerSelect.prototype.defaultItem = defaultItem;
+
     return InnerSelect;
 
     function InnerSelect(selectId) {
@@ -61,6 +65,23 @@ var Select = (function () {
 
     };
 
+    function selectItem(item) {
+
+        this.selectHtml.value = item;
+
+    };
+    function defaultItem(item) {
+
+        option = document.createElement('option');
+
+        option.textContent = item;
+
+        option.value = "";
+
+        this.selectHtml.appendChild(option);
+
+    };
+
     function createOption(obj, text, value) {
 
         isProperty(obj, text, value)
@@ -92,7 +113,7 @@ var Select = (function () {
 
         //check once
         if (checkFirst) {
-                        
+
             checkFirst = false;
 
             isProperty(obj[i], text, value);
