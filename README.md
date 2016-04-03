@@ -26,7 +26,7 @@ var select = Select('SelectId');
 2.Crie seu objeto caso não tenha um.
 
 ```
-var seuObjeto = { id ="1", name=""Otavio};
+var seuObjeto = { id :"1", name:"Otavio"};
 
 ```
 
