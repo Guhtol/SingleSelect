@@ -1,8 +1,9 @@
 var SgSelect = (function () {
     var option = {},
         opFragment = {},
-        arrayPropertyWrong = [],
-        sele = {};
+        textSelected = [],
+        valueSelected = [],
+        arrayPropertyWrong = [];
 
 
     var len,
@@ -10,23 +11,21 @@ var SgSelect = (function () {
         checkFirst = true;
 
 
-    InnerSelect.prototype.add = add;
-
-    InnerSelect.prototype.appendTo = append;
+    InnerSelect.prototype.append = append;
 
     InnerSelect.prototype.selectItem = selectItem;
 
     InnerSelect.prototype.defaultItem = defaultItem;
 
+    InnerSelect.prototype.reset = resetSelect;
+
     return InnerSelect;
 
-    function InnerSelect(text,value) {
+    function InnerSelect(selectId) {
 
         if (this instanceof InnerSelect) {
 
-            this.selectHtml = document.createElement("select");
-            
-            this.
+            this.selectHtml = document.getElementById(selectId);
 
             this.text = getSelectedText;
 
@@ -34,50 +33,77 @@ var SgSelect = (function () {
 
         } else {
 
-            return new InnerSelect(property);
+            return new InnerSelect(selectId);
         }
     };
 
     function getSelectedText() {
 
-        return this.selectHtml.options[this.selectHtml.selectedIndex].text;
-    };
-    function getSelectedValue() {
+        textSelected = [];
 
-        return this.selectHtml.options[this.selectHtml.selectedIndex].value;
-    };
-    function add(obj, text, value, callback) {
+        if (this.selectHtml.multiple) {
 
-        opFragment = document.createDocumentFragment('option');
-
-        if (isArray(obj)) {
-
-            //here  set the default value to run while
-            resetWhile(obj);
+            resetWhile(this.selectHtml.selectedOptions);
 
             while (i < len) {
 
-                if (typeof callback !== undefined) {
-
-                    callback(obj[i]);
-                }
-                createOptionArray(obj, text, value, i);
+                textSelected.push(this.selectHtml.selectedOptions[i].text);
 
                 i++;
             }
+
+            return textSelected;
+
         } else {
 
+            return this.selectHtml.options[this.selectHtml.selectedIndex].text;
+        }
+
+    };
+    function getSelectedValue() {
+
+        valueSelected = [];
+
+        if (this.selectHtml.multiple) {
+
+            resetWhile(this.selectHtml.selectedOptions);
+
+            while (i < len) {
+
+                valueSelected.push(this.selectHtml.selectedOptions[i].value);
+
+                i++;
+            }
+
+            return valueSelected;
+
+        } else {
+
+            return this.selectHtml.options[this.selectHtml.selectedIndex].value;
+        }
+    };
+
+    function append(obj, text, value) {
+
+        //here  set the default value to run while
+        resetWhile(obj);
+
+        opFragment = document.createDocumentFragment('option');
+
+        // if obj it's not array 
+        if (len === undefined) {
+
             createOption(obj, text, value);
-        };
+        }
+        // if obj is array
+        while (i < len) {
+
+            createOptionArray(obj, text, value, i);
+
+            i++;
+        }
 
         this.selectHtml.appendChild(opFragment);
-    };
-    function append(el) {
-        if (typeof el === 'string') {
-            
-            append(document.getElementById(el));
-        }
-        el.appendChild(this.selectHtml);
 
     };
 
@@ -97,6 +123,10 @@ var SgSelect = (function () {
         this.selectHtml.appendChild(option);
 
     };
+    function resetSelect() {
+        
+        this.selectHtml.innerHTML = "";
+    };
 
     function createOption(obj, text, value) {
 
@@ -112,7 +142,7 @@ var SgSelect = (function () {
     };
 
     function createOptionArray(obj, text, value) {
-       
+
         //check if have property text and value in object;
         checkFirstObject(obj, text, value);
 
@@ -135,8 +165,10 @@ var SgSelect = (function () {
             isProperty(obj[i], text, value);
         }
     };
-
+    
     function isProperty(obj, text, value) {
+
+        arrayPropertyWrong = [];
 
         if (typeof obj === 'object') {
 
@@ -164,7 +196,4 @@ var SgSelect = (function () {
 
         i = 0;
     };
-    function isArray(obj) {
-        return Object.prototype.toString.call(obj) === '[object Array]';
-    }
 })();
