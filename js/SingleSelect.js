@@ -1,14 +1,18 @@
-var Select = (function () {
+var SgSelect = (function () {
     var option = {},
         opFragment = {},
-        arrayPropertyWrong = [];
+        arrayPropertyWrong = [],
+        sele = {};
+
 
     var len,
         i,
         checkFirst = true;
 
 
-    InnerSelect.prototype.append = append;
+    InnerSelect.prototype.add = add;
+
+    InnerSelect.prototype.appendTo = append;
 
     InnerSelect.prototype.selectItem = selectItem;
 
@@ -16,11 +20,13 @@ var Select = (function () {
 
     return InnerSelect;
 
-    function InnerSelect(selectId) {
+    function InnerSelect(text,value) {
 
         if (this instanceof InnerSelect) {
 
-            this.selectHtml = document.getElementById(selectId);
+            this.selectHtml = document.createElement("select");
+            
+            this.
 
             this.text = getSelectedText;
 
@@ -28,7 +34,7 @@ var Select = (function () {
 
         } else {
 
-            return new InnerSelect(selectId);
+            return new InnerSelect(property);
         }
     };
 
@@ -40,28 +46,38 @@ var Select = (function () {
 
         return this.selectHtml.options[this.selectHtml.selectedIndex].value;
     };
-
-    function append(obj, text, value) {
-        
-        //here  set the default value to run while
-        resetWhile(obj);
+    function add(obj, text, value, callback) {
 
         opFragment = document.createDocumentFragment('option');
 
-        // if obj it's not array 
-        if (len === undefined) {
+        if (isArray(obj)) {
+
+            //here  set the default value to run while
+            resetWhile(obj);
+
+            while (i < len) {
+
+                if (typeof callback !== undefined) {
+
+                    callback(obj[i]);
+                }
+                createOptionArray(obj, text, value, i);
+
+                i++;
+            }
+        } else {
 
             createOption(obj, text, value);
-        }
-        // if obj is array
-        while (i < len) {
-
-            createOptionArray(obj, text, value, i);
-
-            i++;
-        }
+        };
 
         this.selectHtml.appendChild(opFragment);
+    };
+    function append(el) {
+        if (typeof el === 'string') {
+            
+            append(document.getElementById(el));
+        }
+        el.appendChild(this.selectHtml);
 
     };
 
@@ -148,4 +164,7 @@ var Select = (function () {
 
         i = 0;
     };
+    function isArray(obj) {
+        return Object.prototype.toString.call(obj) === '[object Array]';
+    }
 })();

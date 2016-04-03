@@ -13,7 +13,7 @@
         <hr>
         <div class="row">
             <form action="">
-                <div class="form-group col-sm-4">
+                <!--<div class="form-group col-sm-4">
                     <select id="selectId" class="form-control">
                     </select>
                 </div>
@@ -21,6 +21,9 @@
                     <select id="selectId2" class="form-control">
                         <option value="">Selecione</option>
                     </select>
+                </div>-->
+                <div id="selectid">
+
                 </div>
             </form>
         </div>
@@ -34,34 +37,41 @@
 
     <script src="js/SingleSelect.js"></script>
     <script>
-        var select = Select('selectId');
-        
-        select.defaultItem('Selecione');
-        
-        var select2 = Select('selectId2');
-        
-       len =10000;
-       
-       i=0;
-       
-       var arrayOption=[];
-       
-       var option ={id:'1',name:'Everygrey'};   
+        //     var select = Select('selectId');
+    //     
+    //     select.defaultItem('Selecione');
+    //     
+    //     var select2 = Select('selectId2');
+    //     
+    //    len =10000;
+    //    
+    //    i=0;
+    //    
+    //    var arrayOption=[];
+    //    
+    //    var option ={id:'1',name:'Everygrey'};   
+    // 
+    //    while(i <len)
+    //    {
+    //         arrayOption.push(option);
+    //         
+    //         i++;
+    //     };   
+    //    
+    //    
+    //    select.append(arrayOption,'name','id');           
+    //    
+    //    select2.append(option,'name','id');
+    //    
+    //    select2.selectItem(option.id);
     
-       while(i <len)
-       {
-            arrayOption.push(option);
-            
-            i++;
-        };   
-       
-       
-       select.append(arrayOption,'name','id');           
-       
-       select2.append(option,'name','id');
-       
-       select2.selectItem(option.id);
-       
+    var select = SgSelect();
+    
+    var option ={id:'1',name:'Everygrey'}; 
+    
+    select.add(option);
+    
+    select.appendTo("selectid");
     </script>
 </body>
 
