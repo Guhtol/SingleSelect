@@ -20,9 +20,12 @@
             </form>
         </div>
         <div class="row">
-
-        </div>
-        <div class="row">
+            <form action="">
+                <div class="form-group col-sm-4">
+                    <select id="selectMultiple" class="form-control" multiple="multiple">
+                    </select>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -35,11 +38,16 @@
 
         // exemplo da criação de um objto que será inserido no select
         var option = { id: '1', name: 'Kiss' };
-        var arrayOption = [{ id: '2', name: 'Everygrey' },{ id: '3', name: 'Rosa de Saron' }]
+        var arrayOption = [{ id: '2', name: 'Everygrey' }, { id: '3', name: 'Rosa de Saron' }]
 
-         //o retorno do append é o select modificado.
+        //o retorno do append é o select modificado.
         append(arrayOption)
         select = append(option)
+
+        //exemplo com multiple
+        var selectMult=  sgSelect.init("selectMultiple")('id')('name')(arrayOption)
+
+        sgSelect.getValue(selectMult)
 
     </script>
 </body>

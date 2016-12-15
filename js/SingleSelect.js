@@ -10,15 +10,15 @@
     function init(select) {
         return function (value) {
             return function (text) {
-                return function (obj) { 
-                    var fragment = document.createDocumentFragment('option')                   
+                return function (obj) {
+                    var fragment = document.createDocumentFragment('option')
                     if (typeof select === "string")
                         select = document.getElementById(select)
 
                     if (select === null)
                         throw 'Verifique o seletorId'
 
-                    select.appendChild(createFragment(fragment,obj, value, text))
+                    select.appendChild(createFragment(fragment, obj, value, text))
 
                     return select;
                 }
@@ -26,7 +26,7 @@
         }
     }
 
-    function createFragment(fragment,obj, value, text) {        
+    function createFragment(fragment, obj, value, text) {
         if (isArray(obj)) {
             obj.map(function (item) {
                 if (!checkProperty(item, value) || !checkProperty(item, text))
@@ -57,14 +57,20 @@
 
     function getSelectedValue(obj) {
         if (obj.multiple) {
-            return obj.selectedOptions.map(multiplevalues)
+            return Array.prototype.reduce.call(obj.selectedOptions, function (acc, item) {
+                acc.push(item.value);
+                return acc;
+            }, [])
         }
         return obj.options[obj.selectedIndex].value;
     }
 
     function getSelectedText(obj) {
         if (obj.multiple) {
-            return obj.selectedOptions.map(getText)
+             return Array.prototype.reduce.call(obj.selectedOptions, function (acc, item) {
+                acc.push(item.text);
+                return acc;
+            }, [])
         }
         return obj.options[obj.selectedIndex].text;
     }
