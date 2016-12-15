@@ -17,14 +17,6 @@
                     <select id="selectId" class="form-control">
                     </select>
                 </div>
-                <!--<div class="form-group col-sm-4">
-                    <select id="selectId2" class="form-control">
-                        <option value="">Selecione</option>
-                    </select>
-                </div>-->
-                <!--<div id="selectid">
-                     
-                </div>-->
             </form>
         </div>
         <div class="row">
@@ -37,40 +29,18 @@
 
     <script src="js/SingleSelect.js"></script>
     <script>
-        //     var select = Select('selectId');
-    //     
-    //     select.defaultItem('Selecione');
-    //     
-    //     var select2 = Select('selectId2');
-    //     
-    //    len =10000;
-    //    
-    //    i=0;
-    //    
-    //    var arrayOption=[];
-    //    
-    //    var option ={id:'1',name:'Everygrey'};   
-    // 
-    //    while(i <len)
-    //    {
-    //         arrayOption.push(option);
-    //         
-    //         i++;
-    //     };   
-    //    
-    //    
-    //    select.append(arrayOption,'name','id');           
-    //    
-    //    select2.append(option,'name','id');
-    //    
-    //    select2.selectItem(option.id);
-    
-    var select = SgSelect("selectId");
-    
-    var option ={id:'1',name:'Everygrey'}; 
-        
-    select.append(option,'name','id');
-    
+
+        // Passe o Id o select ou o próprio select esta função retornara uma função para adicionar elementos
+        var append = sgSelect.init("selectId")('id')('name')
+
+        // exemplo da criação de um objto que será inserido no select
+        var option = { id: '1', name: 'Kiss' };
+        var arrayOption = [{ id: '2', name: 'Everygrey' },{ id: '3', name: 'Rosa de Saron' }]
+
+         //o retorno do append é o select modificado.
+        append(arrayOption)
+        select = append(option)
+
     </script>
 </body>
 
