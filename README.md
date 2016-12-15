@@ -4,7 +4,7 @@ Estudo sobre o Paradigma Funcional sobre o elemento Select em Html5.
 
 Este estudo visou trazer os princípios de funções puras, clousure e currying removendo o paradigima Orientado a Objetos.
 
-**OBs**: Tenha em mente que esta implementação é um estudo podendo ferir alguns dos conceitos proposto.
+**OBs**: Tenha em mente que esta implementação é um estudo.
 
 
 Parametros 
