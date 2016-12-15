@@ -9,10 +9,10 @@ Este estudo visou trazer os princípios de funções puras, clousure e currying 
 
 Parametros 
 
-1- id do elemento Select.
-2- Nome da propriedade que tera seu valor passado como value a um elemento Option.
-3- Nome da propriedade que terá seu valor passado para o Select como sendo o texto do Option.
-4- Objeto contendo as propriedades passadas no 2° e 3° parametro.
+1. id do elemento Select.
+2. Nome da propriedade que tera seu valor passado como value a um elemento Option.
+3. Nome da propriedade que terá seu valor passado para o Select como sendo o texto do Option.
+4. Objeto contendo as propriedades passadas no 2° e 3° parametro.
 
 ##Exemplo 
 
