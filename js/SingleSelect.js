@@ -57,20 +57,14 @@
 
     function getSelectedValue(obj) {
         if (obj.multiple) {
-            return Array.prototype.reduce.call(obj.selectedOptions, function (acc, item) {
-                acc.push(item.value);
-                return acc;
-            }, [])
+            return Array.prototype.map.call(obj.selectedOptions,getValue)
         }
         return obj.options[obj.selectedIndex].value;
     }
 
     function getSelectedText(obj) {
         if (obj.multiple) {
-             return Array.prototype.reduce.call(obj.selectedOptions, function (acc, item) {
-                acc.push(item.text);
-                return acc;
-            }, [])
+             return Array.prototype.map.call(obj.selectedOptions,getText)
         }
         return obj.options[obj.selectedIndex].text;
     }
